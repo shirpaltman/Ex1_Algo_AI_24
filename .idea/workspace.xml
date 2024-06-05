@@ -4,16 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cd70f8ee-46ca-4a05-90ad-636a01b4f179" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/BayesBall.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/TestRunner.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/VariableElimination.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/bayesianNetwork.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/bayesianNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/xmlFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/xmlFile.java" afterDir="false" />
-    </list>
+    <list default="true" id="cd70f8ee-46ca-4a05-90ad-636a01b4f179" name="Changes" comment="finished fixing reading the xml file and opening relevent classes.&#10;now starting to work on Bayesball" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -75,12 +66,44 @@
       <option name="presentableId" value="Default" />
       <updated>1717102739389</updated>
       <workItem from="1717102740677" duration="20871000" />
-      <workItem from="1717509895617" duration="16602000" />
+      <workItem from="1717509895617" duration="16910000" />
     </task>
+    <task id="LOCAL-00001" summary="finished fixing reading the xml file and opening relevent classes.&#10;now starting to work on Bayesball">
+      <option name="closed" value="true" />
+      <created>1717609747145</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1717609747146</updated>
+    </task>
+    <task id="LOCAL-00002" summary="finished fixing reading the xml file and opening relevent classes.&#10;now starting to work on Bayesball">
+      <option name="closed" value="true" />
+      <created>1717609764455</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1717609764456</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="finished fixing reading the xml file and opening relevent classes.&#10;now starting to work on Bayesball" />
+    <option name="LAST_COMMIT_MESSAGE" value="finished fixing reading the xml file and opening relevent classes.&#10;now starting to work on Bayesball" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
