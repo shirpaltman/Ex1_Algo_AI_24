@@ -18,7 +18,7 @@ public class xmlFile{
 
     public static void main(String[]args){
         try{
-            bayesianNetwork BN =read_net("network.xml");
+            bayesianNetwork BN =read_net("../network.xml");
             System.out.println(BN);
         }
         catch(Exception e){
@@ -48,95 +48,10 @@ public class xmlFile{
         return  givens;
     }
 
-    private  static String[]parseTable(Element element){
-        String tableString = defElement.getElementByTagName("TABLE").item(0).getTextContent();
+    private  static String[]parseTable(Element defElement){
+        String tableString = defElement.getElementsByTagName("TABLE").item(0).getTextContent();
         return  tableString.split(" ");   //Spliting the table string into an array of probs
     }
-
-    static  class bayesianNode{
-        String name;
-        List<String> outcomes;
-        List <String> parents;
-        bayesianNetwork network;
-        List <bayesianNode> children;
-        Map<String,Double> cpt;
-
-        bayesianNode(String name,List<String>parents, bayesianNetwork network, List<String> outcomes){
-            this.name =name;
-            this.outcomes =outcomes;
-            this.parents = parents;
-            this.network =network;
-            this.cpt = new HashMap<>(); //Initialize the CPT
-            this.children = new ArrayList<>(); //Initialize the children list
-        }
-
-        void build (String[] table){
-            int outcomeCount =outcomes.size();
-            int parentCombinations =table.length /outcomeCount;
-            for (int i =0 ;i<parentCombinations; i++){
-                for (int j=0;j<outcomeCount; j++){
-                    String key= generateKey(i,j,outcomeCount);
-                    cpt.put(key,Double.parseDouble(table[i *outcomeCount +j]));
-                }
-            }
-        }
-
-
-        private  String generateKey(int parentCombination,int outcomeIndex, int outcomeCount){
-            StringBuilder key = new StringBuilder();
-
-            //convert parent comination index to binary  representation
-            for ( int i = parents.size()-1; i>=0 ; i--){
-                int val = (parentCombination/ (1<<i))%2;
-                key.append(val).append(",");
-            }
-            //Append the outcome index
-            key.append(outcomeIndex);
-            return  key.toString();
-        }
-
-
-
-        void  addChild(bayesianNode child){
-            children.add(child);
-        }
-        @Override
-        public String toString(){
-            return "Node{name" + name + ",outcomes=" + outcomes + ",parents=" +parents + ",CPT=" +cpt + "}" ;
-        }
-    }
-
-    static class bayesianNetwork{
-        List<bayesianNode> nodes;
-
-        bayesianNetwork(){
-            this.nodes = new ArrayList<>();
-        }
-        void add_set(bayesianNode node){
-            nodes.add(node);
-        }
-
-
-        //Method to fix ant issues with the network structure
-        void fixNet(){
-            Map<String,bayesianNode> nodeMap = new HashMap<>();
-            for (bayesianNode node : nodes){
-                for(String parentName : node.parents){
-                    bayesianNode parent = nodeMap.get(parentName);
-                    if(parent != null){
-                        parent.addChild(node);
-                    }
-                }
-            }
-        }
-
-        @Override
-        public String toString(){
-            return "Network{nodes=" + nodes + "}";
-        }
-    }
-
-
 
 
 
@@ -171,6 +86,13 @@ public class xmlFile{
                     conditional_prob_table.add(table);
                     bayesianNode bn = new bayesianNode (name,givens,BN,outcomes); //creating a new BN
                     BN.add_set(bn);    //adding the node to the BNetwork
+
+
+                    //Debugging with print statements
+                    System.out.println("Variable Name: " +name);
+                    System.out.println("Outcomes: " +outcomes);
+                    System.out.println("Givens: " +givens);
+                    System.out.println("Table: " +Arrays.toString(table));
                 }
             }
         }
