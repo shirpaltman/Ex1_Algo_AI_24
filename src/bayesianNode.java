@@ -1,39 +1,43 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class bayesianNode{
     String name;
     List<String> outcomes;
-    List <String> parents;
+    List <bayesianNode> parents;
     bayesianNetwork network;
     List <bayesianNode> children;
     Map<String,Double> cpt;
 
+
+    public bayesianNode(String name,List<String> outcomes){
+        this.name = name;
+        this.outcomes =new ArrayList<>(outcomes);       // Clone the list to avoid external modifications
+        this.parents = new ArrayList<>();       // Initialize parents list
+        this.children = new ArrayList<>();      // Initialize children list
+        this.cpt = new HashMap<>();     // Initialize the CPT map
+    }
     bayesianNode(String name, List<String>parentsNames, bayesianNetwork network, List<String> outcomes) {
         this.name = name;
-        this.outcomes = outcomes;
+        this.outcomes = new ArrayList<>();
         this.parents = new ArrayList<>();
         this.network = network;
         this.cpt = new HashMap<>(); //Initialize the CPT
         this.children = new ArrayList<>(); //Initialize the children list
 
 
-        for (String parentName : parentsNames) {
-            bayesianNode parent = network.returnByName(parentName);
-            if (parents != null) {
-                this.parents.add(parentName);
-                parent.children.add(this);
-            }
-        }
+//        for (String parentName : parentsNames) {
+//            bayesianNode parent = network.returnByName(parentName);
+//            if (parents != null) {
+//                this.parents.add(parent);
+//                parent.children.add(this);
+//            }
+//        }
     }
-        public bayesianNode(String name){
-            this.name =name;
-        }
+    public bayesianNode(String name){
+        this.name =name;
+    }
 
-
-    void build (String[] table){
+    void buildCPT (String[] table){
         int outcomeCount =outcomes.size();
         int parentCombinations =table.length /outcomeCount;
         for (int i =0 ;i<parentCombinations; i++){
@@ -43,7 +47,6 @@ public class bayesianNode{
             }
         }
     }
-
 
     private  String generateKey(int parentCombination,int outcomeIndex, int outcomeCount){
         StringBuilder key = new StringBuilder();
@@ -58,8 +61,6 @@ public class bayesianNode{
         return  key.toString();
     }
 
-
-
     void  addChild(bayesianNode child){
         children.add(child);
     }
@@ -69,7 +70,16 @@ public class bayesianNode{
     }
 
 
+    public Collection<bayesianNode> getChildren() {
+        return children;
+    }
+    public Collection<bayesianNode> getParents() {
+        return parents;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+
 }
-
-
-

@@ -3,13 +3,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
- public class bayesianNetwork{
+public class bayesianNetwork{
     List<bayesianNode> nodes;
 
-    bayesianNetwork(){
+     public bayesianNetwork(){
         this.nodes = new ArrayList<>();
     }
-    void add_set(bayesianNode node){
+    public void add_set(bayesianNode node){
         nodes.add(node);
     }
 
@@ -18,13 +18,14 @@ import java.util.Map;
     void fixNet(){
         Map<String,bayesianNode> nodeMap = new HashMap<>();
         for (bayesianNode node : nodes) {
+            String nodeName =node.name;
             nodeMap.put(node.name, node);
         }
         for(bayesianNode node: nodes){
-            for(String parentName : node.parents){
-                bayesianNode parent = nodeMap.get(parentName);
-                if(parent != null){
-                    parent.addChild(node);          //adding the current node as a child to the parent's node
+            for(bayesianNode parentName : node.parents){
+                bayesianNode parentNode = nodeMap.get(parentName.getName());
+                if(parentNode != null){
+                    parentNode.addChild(node);          //adding the current node as a child to the parent's node
                 }
             }
         }
@@ -44,4 +45,6 @@ import java.util.Map;
         }
         return null;
     }
+
+
 }

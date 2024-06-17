@@ -1,5 +1,5 @@
 import java.io.*;
-import java.util.ArrayList;
+import java.util.*;
 
 public class readTextfile {
     private File path;
@@ -7,85 +7,90 @@ public class readTextfile {
     bayesianNetwork BN = new bayesianNetwork();
     ArrayList<String> lines = new ArrayList<>();
 
-     public readTextfile(String path){
-         this.path = new File(path);
-         String line ="";
-         try{
-             br = new BufferedReader(new FileReader(this.path));
-             while((line = br.readLine())!= null ) {
-                 lines.add(line);
-             }
-         }
-         catch(FileNotFoundException e){
-             System.out.println("Could not read this file.\n");
-             e.printStackTrace();
-         }
-         catch (IOException e){
-             e.printStackTrace();
-         }
-     }
+    public readTextfile(String path){
+        this.path = new File(path);
+        String line ="";
+        try{
+            br = new BufferedReader(new FileReader(this.path));
+            while((line = br.readLine())!= null ) {
+                lines.add(line);
+            }
+        }
+        catch(FileNotFoundException e){
+            System.out.println("Could not read this file.\n");
+            e.printStackTrace();
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
+    }
 
-     public String readfile(bayesianNetwork bn){
-         String ans= "";
-         try {
-             //BN = xmlFile.read_net(this.lines.get(0));    //checking that the XML file is read right
-             for (int i = 1; i < lines.size(); i++) {
-                 String line =lines.get(i).trim();
-                 System.out.println("Processing line: " +line);
-                 if (lines.get(i).charAt(0) == 'P') {
-                     String[] probs = new String[2];
-                     String[] hiddens = new String[2];
-                     String[] eliminate_split = lines.get(i).split(" ");
-                     if(eliminate_split.length< 2){
-                         System.out.println("Invaild prob query format" +line);
-                         continue;
-                     }
-                     probs[0] = eliminate_split[0];
-                     hiddens[0] = eliminate_split[1];
-                     probs[0] = probs[0].replace("P(", "").replace(")", "");
-                     String[] hidden = hiddens[0].split("-");
-                     String[] given_split = probs[0].split("\\|");
-                     if(given_split.length< 2){
-                         System.out.println("Invaild format for given part of the query" +line);
-                         continue;
-                     }
 
-                     String query = given_split[0];
-                     String[] evi = given_split[1].split(",");
-                     VariableElimination ve = new VariableElimination(query, hidden, evi, bn);
-                     ans = ans + ve.VariableElimination() + "\n";
-                 } else {
-                     String[] given_split = lines.get(i).split("\\|");
-                     if(given_split.length < 1){
-                         System.out.println("Invaild format for BayesBall query" +line);
-                         continue;
-                     }
-                     String[] query = given_split[0].split("_");
+    // TO DO have to review it !!!!!
+    public String readfile(bayesianNetwork bn){
+        String ans= "";
+        try {
+            for (int i = 1; i < lines.size(); i++) {
+                String line =lines.get(i).trim();
+                System.out.println("Processing line: " +line);
+                if (line.startsWith("P")) {
+                    String[] parts = line.split(" ");
+                    if (parts.length < 2) {
+                        System.out.println("Invalid probability query format: " + line);
+                        continue;
+                    }
+                    String probPart = parts[0].substring(2, parts[0].length() - 1);  // Remove "P(" and ")"
+                    String[] queryAndEvidences = probPart.split("\\|");
+                    String query = queryAndEvidences[0];
+                    String[] evidences = queryAndEvidences.length > 1 ? queryAndEvidences[1].split(",") : new String[0];
 
-                     if(query.length < 2){
-                         System.out.println("Invaild format for query nodes" +line);
-                         continue;
-                     }
-                     ArrayList<bayesianNode> evidence = new ArrayList<>();
-                     if (given_split.length > 1) {
-                         String[] ev = given_split[1].split(",");
-                         for (String s : ev) {
-                             String[] one = s.split("=");
-                             bayesianNode e = bn.returnByName(one[0]);
-                             evidence.add(e);
-                         }
-                     }
+                    Map<String, String> evidenceMap = new HashMap<>();
+                    for (String ev : evidences) {
+                        String[] evParts = ev.split("=");
+                        if (evParts.length == 2) {
+                            evidenceMap.put(evParts[0], evParts[1]);
+                        }
+                    }
 
-                     bayesianNode src =bn.returnByName(query[0]);
-                     bayesianNode dest = bn.returnByName(query[1]);
-                     ans = ans + BayesBall.isInd(bn, src, dest, evidence) + "\n";
-                 }
-             }
-         }
-         catch (Exception e){
-             System.out.println("Failed");
-             e.printStackTrace();
-         }
-         return  ans;
-     }
+                    List<String> hiddenVariables = new ArrayList<>(Arrays.asList(parts[1].split("-")));
+
+                    // Create a VariableElimination instance and run the algorithm
+                    VariableElimination ve = new VariableElimination(query, hiddenVariables, evidenceMap, bn);
+                    String result = ve.run();
+                    ans += result + "\n";
+                } else {
+                    // Handle Bayes Ball queries similarly
+                    String[] parts = line.split("\\|");
+                    if (parts.length < 2) {
+                        System.out.println("Invalid Bayes Ball query format: " + line);
+                        continue;
+                    }
+                    String[] nodes = parts[0].split("-");
+                    if (nodes.length < 2) {
+                        System.out.println("Invalid nodes format in Bayes Ball query: " + line);
+                        continue;
+                    }
+                    ArrayList<bayesianNode> evidence = new ArrayList<>();
+                    if (parts.length > 1 && !parts[1].isEmpty()) {
+                        String[] ev = parts[1].split(",");
+                        for (String e : ev) {
+                            String[] one = e.split("=");
+                            if (one.length == 2) {
+                                bayesianNode eNode = bn.returnByName(one[0]);
+                                evidence.add(eNode);
+                            }
+                        }
+                    }
+
+                    bayesianNode src = bn.returnByName(nodes[0]);
+                    bayesianNode dest = bn.returnByName(nodes[1]);
+                    ans += BayesBall.isIndependent(bn, src, dest, evidence) + "\n";
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Failed to process queries");
+            e.printStackTrace();
+        }
+        return ans;
+    }
 }
