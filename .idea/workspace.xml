@@ -7,11 +7,9 @@
     <list default="true" id="cd70f8ee-46ca-4a05-90ad-636a01b4f179" name="Changes" comment="finished fixing reading the xml file and opening relevent classes.&#10;now starting to work on Bayesball">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/BayesBall.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BayesBall.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TestRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TestRunner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Factor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Factor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/VariableElimination.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/VariableElimination.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/bayesianNetwork.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bayesianNetwork.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/bayesianNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bayesianNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/readTextfile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/readTextfile.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/xmlFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/xmlFile.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -102,7 +100,8 @@
       <workItem from="1718552720260" duration="6111000" />
       <workItem from="1718559549959" duration="9612000" />
       <workItem from="1718571678547" duration="3121000" />
-      <workItem from="1718580195596" duration="2988000" />
+      <workItem from="1718580195596" duration="8280000" />
+      <workItem from="1718616846679" duration="5880000" />
     </task>
     <task id="LOCAL-00001" summary="finished fixing reading the xml file and opening relevent classes.&#10;now starting to work on Bayesball">
       <option name="closed" value="true" />
@@ -128,7 +127,31 @@
       <option name="project" value="LOCAL" />
       <updated>1717609910175</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="finished fixing reading the xml file and opening relevent classes.&#10;now starting to work on Bayesball">
+      <option name="closed" value="true" />
+      <created>1718583344819</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1718583344819</updated>
+    </task>
+    <task id="LOCAL-00005" summary="finished fixing reading the xml file and opening relevent classes.&#10;now starting to work on Bayesball">
+      <option name="closed" value="true" />
+      <created>1718583373648</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1718583373648</updated>
+    </task>
+    <task id="LOCAL-00006" summary="finished fixing reading the xml file and opening relevent classes.&#10;now starting to work on Bayesball">
+      <option name="closed" value="true" />
+      <created>1718583381765</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1718583381765</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -172,17 +195,31 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/xmlFile.java</url>
-          <line>55</line>
+          <line>52</line>
           <properties class="xmlFile" method="read_net">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
           </properties>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/VariableElimination.java</url>
+          <line>60</line>
+          <properties class="VariableElimination" method="initializeFactors">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/TestRunner.java</url>
           <line>13</line>
           <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/VariableElimination.java</url>
+          <line>51</line>
+          <option name="timeStamp" value="5" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

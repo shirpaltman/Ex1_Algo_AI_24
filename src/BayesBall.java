@@ -46,7 +46,7 @@ public class BayesBall {
             }
 
             for(bayesianNode parent :source.getParents()){
-                if (haveSeen.contains(parent.getName())){
+                if (!haveSeen.contains(parent.getName())){
                     if(!bayesBall(BayesianNetwork,parent,dest,evidence,source)){
                         return false;   // Going to be dependent if a path through a child isn't blocked
                     }
@@ -86,5 +86,4 @@ public class BayesBall {
         //If there is no paths that lead to dependency ,return true
         return true;
     }
-
 }

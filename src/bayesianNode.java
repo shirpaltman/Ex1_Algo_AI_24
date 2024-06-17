@@ -4,9 +4,10 @@ public class bayesianNode{
     String name;
     List<String> outcomes;
     List <bayesianNode> parents;
-    bayesianNetwork network;
+    //bayesianNetwork network;
     List <bayesianNode> children;
     Map<String,Double> cpt;
+    String evidenceValue;
 
 
     public bayesianNode(String name,List<String> outcomes){
@@ -16,11 +17,10 @@ public class bayesianNode{
         this.children = new ArrayList<>();      // Initialize children list
         this.cpt = new HashMap<>();     // Initialize the CPT map
     }
-    bayesianNode(String name, List<String>parentsNames, bayesianNetwork network, List<String> outcomes) {
+     public bayesianNode(String name) {
         this.name = name;
         this.outcomes = new ArrayList<>();
         this.parents = new ArrayList<>();
-        this.network = network;
         this.cpt = new HashMap<>(); //Initialize the CPT
         this.children = new ArrayList<>(); //Initialize the children list
 
@@ -33,9 +33,7 @@ public class bayesianNode{
 //            }
 //        }
     }
-    public bayesianNode(String name){
-        this.name =name;
-    }
+
 
     void buildCPT (String[] table){
         int outcomeCount =outcomes.size();
@@ -43,7 +41,7 @@ public class bayesianNode{
         for (int i =0 ;i<parentCombinations; i++){
             for (int j=0;j<outcomeCount; j++){
                 String key= generateKey(i,j,outcomeCount);
-                cpt.put(key,Double.parseDouble(table[i *outcomeCount +j]));
+                this.cpt.put(key,Double.parseDouble(table[i *outcomeCount +j]));
             }
         }
     }
@@ -64,6 +62,10 @@ public class bayesianNode{
     void  addChild(bayesianNode child){
         children.add(child);
     }
+
+    public void  addParent(bayesianNode parent){
+        this.parents.add(parent);
+    }
     @Override
     public String toString(){
         return "Node{name" + name + ",outcomes=" + outcomes + ",parents=" +parents + ",CPT=" +cpt + "}" ;
@@ -79,6 +81,15 @@ public class bayesianNode{
 
     public String getName() {
         return name;
+    }
+    public Map <String,Double> getCpt(){
+        return cpt;
+    }
+    public String getEvidenceValue(){
+        return evidenceValue;
+    }
+    public void  setEvidenceValue (String evidenceValue){
+        this.evidenceValue = evidenceValue;
     }
 
 

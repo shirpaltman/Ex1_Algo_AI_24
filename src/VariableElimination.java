@@ -1,17 +1,16 @@
-import javax.xml.stream.FactoryConfigurationError;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.util.*;
 
 
 
 public class VariableElimination {
+
     String query;
     List<String> hidden;
     Map<String, String> evidence;
     bayesianNetwork Bayesian_Network;
+
 
 
     public VariableElimination(String query, List<String> hidden, Map<String, String> evidence, bayesianNetwork bayesian_Network) {
@@ -52,9 +51,9 @@ public class VariableElimination {
     private void incorporateEvidence(Map<String, Factor> factors) {
         for (Map.Entry<String, String> entry : evidence.entrySet()) {
             String var = entry.getKey();
-            Factor factor = factors.get(entry.getKey());
+            Factor factor = factors.get(var);
             if (factor != null) {
-                factor.applyEvidence(entry.getKey(),entry.getValue());
+                factor.applyEvidence(var,entry.getValue());
             }
         }
     }

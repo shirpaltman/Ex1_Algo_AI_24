@@ -17,7 +17,7 @@ class Factor {
         this.variables.add(node.getName()); // adding itself
         this.values = new HashMap<>();
         initializeValuesFromCPT(node);
-        //TO DO!!!
+
     }
 
 
