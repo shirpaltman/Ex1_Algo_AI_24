@@ -40,7 +40,7 @@ public class VariableElimination {
     private void generateFactors() {
         ArrayList<bayesianNode> irrelevant = findIrrelevantNodes();
         for (bayesianNode node : BN.getNodes().values()) {
-            for (HashMap<String, String> row : node.getCPT()) {
+            for (HashMap<String, String> row : node.getCptTable()) {
                 for (String key : row.keySet()) {
                     if (irrelevant.contains(BN.returnByName(key))) {
                         irrelevant.add(node);

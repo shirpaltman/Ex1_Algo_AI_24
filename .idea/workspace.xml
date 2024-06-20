@@ -6,14 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="cd70f8ee-46ca-4a05-90ad-636a01b4f179" name="Changes" comment="finished fixing reading the xml file and opening relevent classes.&#10;now starting to work on Bayesball">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/BayesBall.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BayesBall.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/FactorComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FactorComponent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TestRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TestRunner.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/VariableElimination.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/VariableElimination.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/bayesianNetwork.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bayesianNetwork.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/bayesianNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bayesianNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/readTextfile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/readTextfile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/xmlFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/xmlFile.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -112,7 +107,7 @@
       <workItem from="1718861954216" duration="17414000" />
       <workItem from="1718899821923" duration="2435000" />
       <workItem from="1718902560361" duration="970000" />
-      <workItem from="1718903559285" duration="5278000" />
+      <workItem from="1718903559285" duration="7912000" />
     </task>
     <task id="LOCAL-00001" summary="finished fixing reading the xml file and opening relevent classes.&#10;now starting to work on Bayesball">
       <option name="closed" value="true" />
@@ -194,7 +189,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718893256500</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="finished fixing reading the xml file and opening relevent classes.&#10;now starting to work on Bayesball">
+      <option name="closed" value="true" />
+      <created>1718909958024</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1718909958024</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -220,8 +223,8 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/FactorComponent.java</url>
-          <line>32</line>
-          <properties class="FactorComponent" method="deepCopyHashMap">
+          <line>27</line>
+          <properties class="FactorComponent" method="removeIrrelevantRows">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
           </properties>
@@ -247,12 +250,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/bayesianNode.java</url>
-          <line>70</line>
+          <line>79</line>
           <option name="timeStamp" value="42" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/bayesianNode.java</url>
-          <line>39</line>
+          <line>48</line>
           <option name="timeStamp" value="43" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
