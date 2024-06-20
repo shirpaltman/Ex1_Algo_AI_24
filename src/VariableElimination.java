@@ -6,106 +6,153 @@ import java.util.*;
 
 public class VariableElimination {
 
-    String query;
-    List<String> hidden;
-    Map<String, String> evidence;
-    bayesianNetwork Bayesian_Network;
+    private String query;
+     private String[] hidden;
+     private String[] evidence;
+    private bayesianNetwork Bayesian_Network;
+    int multiplyCount = 0;
+    int addCount = 0;
 
 
 
-    public VariableElimination(String query, List<String> hidden, Map<String, String> evidence, bayesianNetwork bayesian_Network) {
+    public VariableElimination(String query, String[] hidden, String[] evidence, bayesianNetwork bayesianNetwork) {
         this.query = query;
         this.hidden = hidden;
         this.evidence = evidence;
-        this.Bayesian_Network = bayesian_Network;
+        this.Bayesian_Network = bayesianNetwork;
     }
     public String run() {
         //Initializing factors from the network
-        Map<String, Factor> factors = initializeFactors();
+        Map<String, FactorComponent> factors = initializeFactors();
 
         //incorporating evidence indo factors
         incorporateEvidence(factors);
 
         //Eliminate variables
         for (String variable : hidden) {
-            if (!variable.equals(query) && !evidence.containsKey(variable)) {
+            if (!variable.equals(query) && !evidenceContains(variable)) {
                 factors = eliminateVariable(factors, variable);
             }
         }
         // I want to check if the finalFactor is null so I can avoid the NullPointerException
-        Factor finalFactor = null;
-        for (Factor factor : factors.values()) {
+        FactorComponent finalFactor = null;
+        for (FactorComponent factor : factors.values()) {
             if (finalFactor == null) {
                 finalFactor = factor;
             } else {
-                finalFactor = Factor.multiply(finalFactor, factor);
+                finalFactor = FactorComponent.multiply(finalFactor, factor);
+
             }
         }
-        if (finalFactor == null || finalFactor.values == null || finalFactor.values.isEmpty()) {
+        if (finalFactor == null || finalFactor.probabilityTable.isEmpty() || finalFactor.probabilityTable == null ) {
             return "No vaild results available for the query.";
         }
-        normalize(finalFactor);
+        finalFactor.normalizeFactor();
         return formatOutput(finalFactor);
     }
 
-    private void incorporateEvidence(Map<String, Factor> factors) {
-        for (Map.Entry<String, String> entry : evidence.entrySet()) {
-            String var = entry.getKey();
-            Factor factor = factors.get(var);
-            if (factor != null) {
-                factor.applyEvidence(var,entry.getValue());
+    private void incorporateEvidence(Map<String, FactorComponent> factors) {
+        for (String e : evidence) {
+            String[] parts = e.split("=");
+            String var = parts[0];
+            String value = parts[1];
+            FactorComponent factor =factors.get(var);
+            if(factor !=null) {
+                factor.filterRowByEvidence();
             }
         }
     }
 
-    private Map<String, Factor> initializeFactors() {
-        Map<String, Factor> factors = new HashMap<>();
-        for (bayesianNode node : Bayesian_Network.nodes) {
-            Factor factor = new Factor(node);
+    private boolean evidenceContains(String variable) {
+        for (String e : evidence) {
+            if (e.startsWith(variable + "=")) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+    private Map<String, FactorComponent> initializeFactors() {
+
+        Map<String, FactorComponent> factors = new HashMap<>();
+        for (bayesianNode node : Bayesian_Network.getNodes().values()) {
+            ArrayList<HashMap<String, String>> cpt = node.getCPT();
+            String[] evidences = new String[node.getParents().size()];
+            int i = 0;
+            for (String parent : node.getParents()) {
+                evidences[i++] = parent;
+            }
+            FactorComponent factor = new FactorComponent(cpt, evidences);
             factors.put(node.getName(), factor);
         }
         return factors;
     }
 
-    private Map<String, Factor> eliminateVariable(Map<String, Factor> factors, String variable) {
+
+    private Map<String, FactorComponent> eliminateVariable(Map<String, FactorComponent> factors, String variable) {
         //Combing all factors that contain the variable
-        Factor newFactor = null;
-        List<String> toRemove = new ArrayList<>();
-        for (Map.Entry<String,Factor>entry : factors.entrySet()) {
-            if (entry.getValue().variables.contains(variable)) {
-                if (newFactor == null) {
-                    newFactor = entry.getValue();
+
+        FactorComponent combinedFactor = null;
+        List<String> involvedFactors = new ArrayList<>();
+
+        // Combine all factors involving the variable
+        for (Map.Entry<String, FactorComponent> entry : factors.entrySet()) {
+            if (entry.getValue().probabilityTable.stream().anyMatch(row -> row.containsKey(variable))) {
+                if (combinedFactor == null) {
+                    combinedFactor = entry.getValue();
                 } else {
-                    newFactor = Factor.multiply(newFactor,entry.getValue());
+                    combinedFactor = FactorComponent.multiply(combinedFactor, entry.getValue());
                 }
-                toRemove.add(entry.getKey());
+                involvedFactors.add(entry.getKey());
             }
         }
-        toRemove.forEach(factors::remove);
 
-        //summing out the var
-        if(newFactor != null){
-            Factor summedFactor =newFactor.sumOut(variable);
-            factors.put(variable + "_summed", summedFactor);
+        if (combinedFactor != null) {
+            // Sum out the variable
+            FactorComponent newFactor = combinedFactor.marginalizeVariable(variable);
+            factors.put("summedOut_" + variable, newFactor);
+
+            // Remove the old factors
+            for (String factorName : involvedFactors) {
+                factors.remove(factorName);
+            }
         }
+
         return factors;
     }
 
-    private String formatOutput(Factor finalFactor) {
-        StringBuilder sb = new StringBuilder();
-        for (Map.Entry<List<String>, Double> entry : finalFactor.values.entrySet()) {
-            sb.append("P(").append(query).append("=").append(entry.getKey().get(0)).append(") = ");
-            sb.append(String.format("%.5f", entry.getValue())).append("\n");
+    private String formatOutput(FactorComponent finalFactor) {
+        StringBuilder output = new StringBuilder();
+        for (Map<String,String> row :  finalFactor.probabilityTable) {
+            output.append("P(");
+            for(Map.Entry<String,String> entry : row.entrySet()){
+                if (!entry.getKey().equals("P")){
+                    output.append(entry.getKey()).append("=").append(entry.getValue()).append(",");
+                }
+            }
+            output.deleteCharAt(output.length()-1);
+            output.append(") = ").append(row.get("P")).append("\n");
         }
-        return sb.toString();
-    }
-
-    public void normalize(Factor factor){
-        double total =factor.values.values().stream().mapToDouble(v->v).sum();
-        for(List<String> key : new ArrayList<>(factor.values.keySet())){
-            factor.values.put(key,factor.values.get(key)/total);
-        }
+       return output.toString();
     }
 }
+
+//private void normalize(FactorComponent factor) {
+//    double sum = factor.values.values().stream().mapToDouble(Double::doubleValue).sum();
+//    for (Map.Entry<List<String>, Double> entry : factor.values.entrySet()) {
+//        factor.values.put(entry.getKey(), entry.getValue() / sum);
+//    }
+//}
+
+
+
+//    public void normalize(FactorComponent factor){
+//        double total =factor.values.values().stream().mapToDouble(v->v).sum();
+//            factor.values.replaceAll((k,v)->v/total);;
+//            addCount +=factor.values.size()-1; //Normalization involves n-1 additions
+//
+//    }
+//}
 
 

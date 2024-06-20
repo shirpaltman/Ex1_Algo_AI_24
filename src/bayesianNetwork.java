@@ -1,31 +1,34 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class bayesianNetwork{
-    List<bayesianNode> nodes;
+    private Map<String,bayesianNode> nodes;
 
-     public bayesianNetwork(){
-        this.nodes = new ArrayList<>();
+    public bayesianNetwork() {
+        this.nodes = new HashMap<>();
     }
-    public void add_set(bayesianNode node){
-        nodes.add(node);
+
+    public void addNode(bayesianNode node) {
+        nodes.put(node.getName(), node);
     }
+
+    public Map<String,bayesianNode> getNodes() {
+       return nodes;
+    }
+
+    public bayesianNode getNode(String name) {
+        return nodes.get(name);
+    }
+
 
 
     //Method to fix ant issues with the network structure
-    void fixNet(){
-        Map<String,bayesianNode> nodeMap = new HashMap<>();
-        for (bayesianNode node : nodes) {
-            String nodeName =node.name;
-            nodeMap.put(node.name, node);
-        }
-        for(bayesianNode node: nodes){
-            for(bayesianNode parentName : node.parents){
-                bayesianNode parentNode = nodeMap.get(parentName.getName());
-                if(parentNode != null){
-                    parentNode.addChild(node);          //adding the current node as a child to the parent's node
+    public void fixNet(){
+        // Ensure all parents have their children correctly set
+        for (bayesianNode node : nodes.values()) {
+            for (String parentName : node.getParents()) {
+                bayesianNode parent = getNode(parentName);
+                if(parent != null) {
+                    parent.addChild(node.getName());
                 }
             }
         }
@@ -36,15 +39,12 @@ public class bayesianNetwork{
         return "Network{nodes=" + nodes + "}";
     }
 
-    public bayesianNode returnByName(String name) {
-        for(bayesianNode node :nodes){
-            if(node.name.equals(name)){
-                return node;
-
-            }
-        }
-        return null;
-    }
-
-
+//    public bayesianNode returnByName(String name) {
+//        for (bayesianNode node : nodes) {
+//            if (node.getName().equals(name)) {
+//                return node;
+//            }
+//        }
+//        return null;
+//    }
 }

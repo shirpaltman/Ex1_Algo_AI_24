@@ -1,90 +1,91 @@
 import java.util.*;
 
 public class bayesianNode{
-    String name;
-    List<String> outcomes;
-    List <bayesianNode> parents;
+    private String name;
+    private List<String> outcomes;
+    private List <String> parents;
     //bayesianNetwork network;
-    List <bayesianNode> children;
-    Map<String,Double> cpt;
+    List <String> children;
+    private ArrayList<HashMap<String,String>> cpt;
     String evidenceValue;
 
 
     public bayesianNode(String name,List<String> outcomes){
         this.name = name;
-        this.outcomes =new ArrayList<>(outcomes);       // Clone the list to avoid external modifications
+        this.outcomes = new ArrayList<>(outcomes);      // Clone the list to avoid external modifications
         this.parents = new ArrayList<>();       // Initialize parents list
-        this.children = new ArrayList<>();      // Initialize children list
-        this.cpt = new HashMap<>();     // Initialize the CPT map
+        this.cpt = new ArrayList<>();     // Initialize the CPT map
+        this.children = new ArrayList<>();
     }
-     public bayesianNode(String name) {
-        this.name = name;
-        this.outcomes = new ArrayList<>();
-        this.parents = new ArrayList<>();
-        this.cpt = new HashMap<>(); //Initialize the CPT
-        this.children = new ArrayList<>(); //Initialize the children list
 
 
-//        for (String parentName : parentsNames) {
-//            bayesianNode parent = network.returnByName(parentName);
-//            if (parents != null) {
-//                this.parents.add(parent);
-//                parent.children.add(this);
+
+   // Function to build the CPT
+//    public void buildCPT(String[] parentValues, String[] nodeValues, double[] probabilities) {
+//        for (int i = 0; i < probabilities.length; i++) {
+//            HashMap<String, String> row = new HashMap<>();
+//            int index = i;
+//            for (int j = parentValues.length - 1; j >= 0; j--) {
+//                row.put(parents.get(j).getName(), parentValues[index % parentValues.length]);
+//                index /= parentValues.length;
 //            }
+//            row.put(name, nodeValues[i % nodeValues.length]);
+//            row.put("P", String.valueOf(probabilities[i]));
+//            cpt.add(row);
 //        }
-    }
+//    }
+//
+//// Function to build the CPT from a 2D array
+//public void buildCPT(String[][] table) {
+//    for (String[] row : table) {
+//        HashMap<String, String> cptRow = new HashMap<>();
+//        for (int i = 0; i < row.length - 1; i++) {
+//            cptRow.put(parents.get(i).getName(), row[i]);
+//        }
+//        cptRow.put(name, row[row.length - 2]);
+//        cptRow.put("P", row[row.length - 1]);
+//        cpt.add(cptRow);
+//    }
+//}
 
 
-    void buildCPT (String[] table){
-        int outcomeCount =outcomes.size();
-        int parentCombinations =table.length /outcomeCount;
-        for (int i =0 ;i<parentCombinations; i++){
-            for (int j=0;j<outcomeCount; j++){
-                String key= generateKey(i,j,outcomeCount);
-                this.cpt.put(key,Double.parseDouble(table[i *outcomeCount +j]));
-            }
-        }
-    }
 
-    private  String generateKey(int parentCombination,int outcomeIndex, int outcomeCount){
-        StringBuilder key = new StringBuilder();
 
-        //convert parent comination index to binary  representation
-        for ( int i = parents.size()-1; i>=0 ; i--){
-            int val = (parentCombination/ (1<<i))%2;
-            key.append(val).append(",");
-        }
-        //Append the outcome index
-        key.append(outcomeIndex);
-        return  key.toString();
-    }
 
-    void  addChild(bayesianNode child){
-        children.add(child);
-    }
-
-    public void  addParent(bayesianNode parent){
-        this.parents.add(parent);
-    }
     @Override
     public String toString(){
         return "Node{name" + name + ",outcomes=" + outcomes + ",parents=" +parents + ",CPT=" +cpt + "}" ;
     }
 
-
-    public Collection<bayesianNode> getChildren() {
-        return children;
-    }
-    public Collection<bayesianNode> getParents() {
+    public List<String> getParents() {
         return parents;
+    }
+    public void addParent(String parentName){
+        this.parents.add(parentName);
+    }
+
+    void  addChild(String child){
+        if (!children.contains(child)) {
+            children.add(child);
+        }
     }
 
     public String getName() {
         return name;
     }
-    public Map <String,Double> getCpt(){
+
+    public List<String> getChildren() {
+        return children;
+    }
+
+    public List<String> getOutcomes() {
+        return outcomes;
+    }
+    public ArrayList<HashMap<String,String >>getCPT(){
         return cpt;
     }
+
+
     public String getEvidenceValue(){
         return evidenceValue;
     }

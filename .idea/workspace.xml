@@ -7,9 +7,12 @@
     <list default="true" id="cd70f8ee-46ca-4a05-90ad-636a01b4f179" name="Changes" comment="finished fixing reading the xml file and opening relevent classes.&#10;now starting to work on Bayesball">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/BayesBall.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BayesBall.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Factor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Factor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Factor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FactorComponent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TestRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TestRunner.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/VariableElimination.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/VariableElimination.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bayesianNetwork.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bayesianNetwork.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/bayesianNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bayesianNode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/readTextfile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/readTextfile.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/xmlFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/xmlFile.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -31,7 +34,7 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="QODANA_PROBLEMS_VIEW_TAB" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 4
@@ -42,26 +45,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.TestRunner.executor&quot;: &quot;Run&quot;,
-    &quot;Application.xmlFile.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;full.screen.before.presentation.mode&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;onboarding.tips.debug.path&quot;: &quot;/home/shiraltman/Documents/GitHub/Ex1_Algo_AI_24/src/Main.java&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.TestRunner.executor": "Run",
+    "Application.xmlFile.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "full.screen.before.presentation.mode": "false",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "onboarding.tips.debug.path": "/home/shiraltman/Documents/GitHub/Ex1_Algo_AI_24/src/Main.java",
+    "settings.editor.selected.configurable": "settings.qodana",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="TestRunner" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="TestRunner" />
@@ -101,7 +104,12 @@
       <workItem from="1718559549959" duration="9612000" />
       <workItem from="1718571678547" duration="3121000" />
       <workItem from="1718580195596" duration="8280000" />
-      <workItem from="1718616846679" duration="5880000" />
+      <workItem from="1718616846679" duration="42338000" />
+      <workItem from="1718832830536" duration="2997000" />
+      <workItem from="1718838647494" duration="2040000" />
+      <workItem from="1718855767592" duration="685000" />
+      <workItem from="1718856780220" duration="4845000" />
+      <workItem from="1718861954216" duration="5564000" />
     </task>
     <task id="LOCAL-00001" summary="finished fixing reading the xml file and opening relevent classes.&#10;now starting to work on Bayesball">
       <option name="closed" value="true" />
@@ -151,7 +159,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718583381765</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="finished fixing reading the xml file and opening relevent classes.&#10;now starting to work on Bayesball">
+      <option name="closed" value="true" />
+      <created>1718663246467</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1718663246467</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -172,56 +188,8 @@
     <MESSAGE value="finished fixing reading the xml file and opening relevent classes.&#10;now starting to work on Bayesball" />
     <option name="LAST_COMMIT_MESSAGE" value="finished fixing reading the xml file and opening relevent classes.&#10;now starting to work on Bayesball" />
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/TestRunner.java</url>
-          <line>2</line>
-          <properties class="TestRunner" method="main">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/Factor.java</url>
-          <line>65</line>
-          <properties class="Factor" method="applyEvidence">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/xmlFile.java</url>
-          <line>52</line>
-          <properties class="xmlFile" method="read_net">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/VariableElimination.java</url>
-          <line>60</line>
-          <properties class="VariableElimination" method="initializeFactors">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/TestRunner.java</url>
-          <line>13</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/VariableElimination.java</url>
-          <line>51</line>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

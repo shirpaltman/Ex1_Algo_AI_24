@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 public class BayesBall {
-
+    private bayesianNetwork network;
     private static Set<String> haveSeen;   //For keeping track og nodes so I can prevent cycles
 
     /**
@@ -19,9 +19,9 @@ public class BayesBall {
         haveSeen = new HashSet<>();    // initializing the haveSeen set for every independence check
         boolean independent = bayesBall(BayesianNetwork, source, dest, evidence, null);
         if (independent == true) {
-            return "yes";     //independent
+            return "yes ";     //independent
         } else {
-            return "no";
+            return "no ";
         }
     }
 
@@ -30,7 +30,7 @@ public class BayesBall {
     private  static  boolean bayesBall(bayesianNetwork BayesianNetwork ,bayesianNode source, bayesianNode dest,ArrayList<bayesianNode>evidence,bayesianNode lastSeen){
 
         //if the source node is the same as the destination node,then of course their dependent
-        if(source.equals(dest)){
+        if( source == null ||source.equals(dest)){
             return false;
         }
         //Marking the current node as haveSeen
@@ -40,31 +40,34 @@ public class BayesBall {
         if(evidence.contains(source)){
 
             //If after visiting a child,the ball is blocked
-            if(lastSeen!=null && source.getChildren().contains(lastSeen)){
+            if(lastSeen!=null && source.getChildren().contains(lastSeen.getName())){
                 return true;
                 // Its independent because the path is blocked
             }
 
-            for(bayesianNode parent :source.getParents()){
-                if (!haveSeen.contains(parent.getName())){
+            for(String parentName :source.getParents()){
+                bayesianNode parent = BayesianNetwork.getNode(parentName);
+//                if (!haveSeen.contains(parent.getName())){
                     if(!bayesBall(BayesianNetwork,parent,dest,evidence,source)){
                         return false;   // Going to be dependent if a path through a child isn't blocked
                     }
-                }
+//                }
             }
         }
         else{
             //if the current node  isn't in the evidence set
             //if were coming from a child or it is the starting node ,we'll have to check both parents
-            if(lastSeen == null || source.getChildren().contains(lastSeen)){
-                for(bayesianNode parent : source.getParents()) {
+            if(lastSeen == null || source.getChildren().contains(lastSeen.getName())){
+                for(String parentName : source.getParents()) {
+                    bayesianNode parent = BayesianNetwork.getNode(parentName);
                     if(!haveSeen.contains(parent.getName())){
                         if(!bayesBall(BayesianNetwork,parent,dest,evidence,source)){
                             return false;  //Is dependent if any path through a parent isnt clogged
                         }
                     }
                 }
-                for(bayesianNode child :source.getChildren()){
+                for(String childName :source.getChildren()){
+                    bayesianNode child = BayesianNetwork.getNode(childName);
                     if (!haveSeen.contains(child.getName())){
                         if (!bayesBall(BayesianNetwork,child,dest,evidence,source)){
                             return false;   // Is dependent if any path through a child isn't clogged
@@ -74,7 +77,8 @@ public class BayesBall {
             }
             else {
                 //if I'm coming from a parent ,we'll check just the children
-                for (bayesianNode child : source.getChildren()){
+                for (String childName : source.getChildren()){
+                    bayesianNode child = BayesianNetwork.getNode(childName);
                     if(!haveSeen.contains(child.getName())){
                         if(!bayesBall(BayesianNetwork,child,dest,evidence,source)){
                             return false;         // Is dependent ia there is a path through a child isn't clogged
