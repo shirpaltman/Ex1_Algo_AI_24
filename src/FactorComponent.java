@@ -3,30 +3,31 @@
 import java.util.*;
 
 
-//    String name;
-//    Set<String> variables;
-//    Map<List<String>,Double> values;   //for every key there is a combo of var values ,each value is of-course the probability
+
 
     public class FactorComponent implements  Comparable <FactorComponent>{
-        ArrayList<HashMap<String,String>> probabilityTable= new ArrayList<HashMap<String,String>>();
+        ArrayList<HashMap<String,String>> probabilityTable= new ArrayList<>();
         ArrayList<String> evidenceList = new ArrayList<>();
 
 
-        public FactorComponent(){
+        public FactorComponent(ArrayList<HashMap<String,String>> probabilityTable,ArrayList<String>eveidenceList){
+            this.probabilityTable = new ArrayList<>(probabilityTable);
+            this.evidenceList = new ArrayList<>(eveidenceList);
+        }
+
+        public FactorComponent() {
             this.probabilityTable = new ArrayList<>();
             this.evidenceList = new ArrayList<>();
         }
-
-        public  FactorComponent(ArrayList<HashMap<String,String>> cpt,String [] evidence){
-            this();
-            for(int i=0; i< cpt.size();i++){
-                this.probabilityTable.add(deepCopyHashMap(cpt.get(i)));
-            }
-            for(int i= 0; i<evidence.length ; i++){
-                this.evidenceList.add(evidence[i]);
-            }
-        }
-
+//        public  FactorComponent(ArrayList<HashMap<String,String>> cpt,String [] evidence){
+//            this();
+//            for(int i=0; i< cpt.size();i++){
+//                this.probabilityTable.add(deepCopyHashMap(cpt.get(i)));
+//            }
+//            for(int i= 0; i<evidence.length ; i++){
+//                this.evidenceList.add(evidence[i]);
+//            }
+//        }
         public  FactorComponent(FactorComponent other){
             for (int i = 0; i < other.probabilityTable.size(); i++) {
                 this.probabilityTable.add(deepCopyHashMap(other.probabilityTable.get(i)));
@@ -44,7 +45,9 @@ import java.util.*;
             }
             return copy;
         }
-
+        public void filterRowByEvidence(String variable, String value) {
+            this.probabilityTable.removeIf(row -> !row.get(variable).equals(value));
+        }
         public void filterRowByEvidence(){
             ArrayList<String> evidencePairs = new ArrayList<>();
             for(String evidence : this.evidenceList){
@@ -68,8 +71,6 @@ import java.util.*;
                 }
             }
         }
-
-
         public FactorComponent marginalizeVariable(String variable){
             FactorComponent result = new FactorComponent();
             result.evidenceList.addAll(this.evidenceList);
@@ -98,10 +99,6 @@ import java.util.*;
 
             return result;
         }
-
-
-
-
         // A method for calculating the ASCII value sum of the factor's key for comparing later on
         public  int calculateAsciiSum(){
             int asciiSum = 0;
@@ -112,82 +109,6 @@ import java.util.*;
             }
             return asciiSum;
         }
-
-
-
-//        private  void initializeValuesFromCPT(bayesianNode node) {
-//            // Assuming node.cpt holds entries in form of "parentValue1,parentValue2,...:nodeValue -> probability"
-//            for(Map.Entry<String,Double> entry : node.cpt.entrySet()){
-//                String key = entry.getKey();
-//                List <String> keyParts = new ArrayList<>(Arrays.asList(key.split(",")));
-//                this.values.put(keyParts,entry.getValue());
-//
-//            }
-//        }
-
-
-//        public Factor sumOut(String variable) {
-//            Factor result = new Factor("Summed(" + this.name + ")");
-//            result.variables.addAll(this.variables);
-//            result.variables.remove(variable);
-//
-//
-//            Map<List<String>, Double> newValues = new HashMap<>();
-//            int variableIndex = new ArrayList<>(this.variables).indexOf(variable);
-//            for (Map.Entry<List<String>, Double> entry : this.values.entrySet()) {
-//                List<String> reduceKey = new ArrayList<>(entry.getKey());
-//    //            reduceKey.remove(index);
-//    //            newValues.merge(reduceKey,entry.getValue(),Double::sum);
-//
-//
-//                // Debugging: Print the current state
-//                System.out.println("Original key: " + entry.getKey());
-//                System.out.println("Reduced key before removal: " + reduceKey);
-//                System.out.println("Index of variable to remove: " + variableIndex);
-//
-//
-//                if (variableIndex >= 0 && variableIndex < reduceKey.size()) {
-//                    reduceKey.remove(variableIndex);
-//                } else {
-//                    // Debugging: Print error state
-//                    System.out.println("Index out of bounds for variable: " + variable + " with index: " + variableIndex);
-//                    continue;
-//                }
-//
-//                System.out.println("Reduced key after removal: " + reduceKey);
-//
-//                newValues.merge(reduceKey, entry.getValue(), Double::sum);
-//
-//    //            reduceKey.removeIf(k->k.startsWith(variable + "="));   // Filter out the variable to sum out
-//    //            String reducesKeyString = String.join(",", reduceKey);
-//    //            newValues.merge(reducesKeyString, entry.getValue(), Double::sum);
-//
-//            }
-//            //converting our string keys back to list format
-//
-//           result.values =newValues;
-//            return result;
-//        }
-
-
-//        public void applyEvidence(String variable,String value){
-//            int index = new ArrayList<>(this.variables).indexOf(variable);
-//            this.values.entrySet().removeIf(entry -> !entry.getKey().get(index).equals(value));
-//            //Remove the variable from the factor's variables set
-//            this.variables.remove(variable);
-//            }
-
-
-    //        //Updating the keys to remove the evidence variable
-    //        Map<List<String>,Double> newValues = new HashMap<>();
-    //        for(Map.Entry<List<String>,Double> entry : this.values.entrySet()){
-    //            List<String> newKey = new ArrayList<>(entry.getKey());
-    //            int index = new ArrayList<>(this.variables).indexOf(variable);
-    //            newKey.remove(index);
-    //            newValues.put(newKey, entry.getValue());
-    //        }
-    //        this.values= newValues;
-    //    }
         public static FactorComponent multiply(FactorComponent f1,FactorComponent f2) {
             FactorComponent result = new FactorComponent();
             for (Map<String, String> row1 : f1.probabilityTable) {
@@ -215,9 +136,6 @@ import java.util.*;
             }
             return result;
         }
-
-
-
 
         // Method to normalize the factor
         public void normalizeFactor() {
@@ -259,7 +177,20 @@ import java.util.*;
                     "probabilityTable=" + probabilityTable +
                     ", evidenceList=" + evidenceList + '}';
         }
-}
+
+        public ArrayList<HashMap<String, String>> getProbabilityTable() {
+            return probabilityTable;
+
+        }
+
+        public void addEvidence(String evidence) {
+            evidenceList.add(evidence);
+        }
+
+        public void addProbabilityRow(HashMap<String, String> row) {
+            probabilityTable.add(row);
+        }
+    }
 
 
 

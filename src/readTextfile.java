@@ -55,7 +55,13 @@ public class readTextfile {
 
                     String query = given_split[0];
                     String[] evi = given_split[1].split(",");
-                    VariableElimination ve = new VariableElimination(query, hidden, evi, network);
+                    Map<String, String> evidence = new HashMap<>();
+                    for (String e : evi) {
+                        String[] parts = e.split("=");
+                        evidence.put(parts[0], parts[1]);
+                    }
+
+                    VariableElimination ve = new VariableElimination(query, hidden, evidence, network);
                     ans = ans + ve.run() + "\n";
                 } else {
                     String[] given_split = line.split("\\|");
