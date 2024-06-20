@@ -10,7 +10,7 @@ import java.util.*;
         ArrayList<String> evidenceList = new ArrayList<>();
 
 
-        public FactorComponent(ArrayList<HashMap<String,String>> probabilityTable,ArrayList<String>eveidenceList){
+        public FactorComponent(List<HashMap<String,String>> probabilityTable,ArrayList<String>eveidenceList){
             this.probabilityTable = new ArrayList<>(probabilityTable);
             this.evidenceList = new ArrayList<>(eveidenceList);
         }
@@ -19,15 +19,7 @@ import java.util.*;
             this.probabilityTable = new ArrayList<>();
             this.evidenceList = new ArrayList<>();
         }
-//        public  FactorComponent(ArrayList<HashMap<String,String>> cpt,String [] evidence){
-//            this();
-//            for(int i=0; i< cpt.size();i++){
-//                this.probabilityTable.add(deepCopyHashMap(cpt.get(i)));
-//            }
-//            for(int i= 0; i<evidence.length ; i++){
-//                this.evidenceList.add(evidence[i]);
-//            }
-//        }
+
         public  FactorComponent(FactorComponent other){
             for (int i = 0; i < other.probabilityTable.size(); i++) {
                 this.probabilityTable.add(deepCopyHashMap(other.probabilityTable.get(i)));
@@ -189,6 +181,16 @@ import java.util.*;
 
         public void addProbabilityRow(HashMap<String, String> row) {
             probabilityTable.add(row);
+        }
+
+        // this function removes the evidence from the CPT's after we used it
+        public void removeEvidence() {
+            for (String e : evidenceList) {
+                String var = e.split("=")[0];
+                for (HashMap<String, String> row : probabilityTable) {
+                    row.remove(var);
+                }
+            }
         }
     }
 

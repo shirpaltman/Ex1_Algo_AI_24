@@ -6,9 +6,14 @@
   <component name="ChangeListManager">
     <list default="true" id="cd70f8ee-46ca-4a05-90ad-636a01b4f179" name="Changes" comment="finished fixing reading the xml file and opening relevent classes.&#10;now starting to work on Bayesball">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BayesBall.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BayesBall.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/FactorComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FactorComponent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TestRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TestRunner.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/VariableElimination.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/VariableElimination.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bayesianNetwork.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bayesianNetwork.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bayesianNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bayesianNode.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/readTextfile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/readTextfile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/xmlFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/xmlFile.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -104,7 +109,10 @@
       <workItem from="1718838647494" duration="2040000" />
       <workItem from="1718855767592" duration="685000" />
       <workItem from="1718856780220" duration="4845000" />
-      <workItem from="1718861954216" duration="11010000" />
+      <workItem from="1718861954216" duration="17414000" />
+      <workItem from="1718899821923" duration="2435000" />
+      <workItem from="1718902560361" duration="970000" />
+      <workItem from="1718903559285" duration="5278000" />
     </task>
     <task id="LOCAL-00001" summary="finished fixing reading the xml file and opening relevent classes.&#10;now starting to work on Bayesball">
       <option name="closed" value="true" />
@@ -178,7 +186,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718887983722</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="finished fixing reading the xml file and opening relevent classes.&#10;now starting to work on Bayesball">
+      <option name="closed" value="true" />
+      <created>1718893256500</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1718893256500</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -204,17 +220,45 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/FactorComponent.java</url>
-          <line>40</line>
+          <line>32</line>
           <properties class="FactorComponent" method="deepCopyHashMap">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
           </properties>
           <option name="timeStamp" value="25" />
         </line-breakpoint>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.NullPointerException" package="java.lang" />
+          <option name="timeStamp" value="31" />
+        </breakpoint>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.IndexOutOfBoundsException" package="java.lang" />
+          <option name="timeStamp" value="33" />
+        </breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/VariableElimination.java</url>
-          <line>62</line>
-          <option name="timeStamp" value="28" />
+          <line>35</line>
+          <option name="timeStamp" value="34" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/VariableElimination.java</url>
+          <line>33</line>
+          <option name="timeStamp" value="35" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/bayesianNode.java</url>
+          <line>70</line>
+          <option name="timeStamp" value="42" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/bayesianNode.java</url>
+          <line>39</line>
+          <option name="timeStamp" value="43" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/VariableElimination.java</url>
+          <line>122</line>
+          <option name="timeStamp" value="47" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

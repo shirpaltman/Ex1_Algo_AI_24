@@ -1,91 +1,87 @@
-import java.util.*;
-import java.io.File;
-
 import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-import org.w3c.dom.Element;
-import javax.xml.parsers.DocumentBuilderFactory;
+import org.xml.sax.SAXException;
+
+import javax.xml.XMLConstants;
 import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
+public class xmlFile {
+    public static bayesianNetwork read_net(String filename) {
+        HashMap<String,String[]> cpts = new HashMap<>();
+        DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+        bayesianNetwork BN = new bayesianNetwork();
+        ArrayList<String> variables = new ArrayList<>();
+        ArrayList<String> outcomes = new ArrayList<>();
+        ArrayList<String> givens = new ArrayList<>();
+        ArrayList<String> tables = new ArrayList<>();
 
-
-
-public class xmlFile{
-
-    public static bayesianNetwork readNetwork(String filePath) {
         try {
-            File inputFile = new File(filePath);
-            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-            Document doc = dBuilder.parse(inputFile);
-            doc.getDocumentElement().normalize();
+            dbf.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true);
+            DocumentBuilder db = dbf.newDocumentBuilder();
+            Document net = db.parse(new File(filename));
+            net.getDocumentElement().normalize();
 
-            NodeList nodeList = doc.getElementsByTagName("VARIABLE");
-            bayesianNetwork network = new bayesianNetwork();
-            List<bayesianNode> nodes = new ArrayList<>();
+            NodeList variable = net.getElementsByTagName("VARIABLE");
+            NodeList definition = net.getElementsByTagName("DEFINITION");
 
-            for (int temp = 0; temp < nodeList.getLength(); temp++) {
-                Node nNode = nodeList.item(temp);
-                if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-                    Element eElement = (Element) nNode;
-                    String name = eElement.getElementsByTagName("NAME").item(0).getTextContent();
-                    NodeList outcomeList = eElement.getElementsByTagName("OUTCOME");
-                    List<String> outcomes = new ArrayList<>();
-                    for (int i = 0; i < outcomeList.getLength(); i++) {
-                        outcomes.add(outcomeList.item(i).getTextContent());
-                    }
-                    bayesianNode node = new bayesianNode(name, outcomes);
-                    nodes.add(node);
-                    network.addNode(node);
-                }
-            }
+            for (int i = 0; i < variable.getLength(); i++) {
+                variables = new ArrayList<>();
+                outcomes = new ArrayList<>();
+                givens = new ArrayList<>();
+                tables = new ArrayList<>();
 
-            NodeList definitionList = doc.getElementsByTagName("DEFINITION");
-            for (int temp = 0; temp < definitionList.getLength(); temp++) {
-                Node dNode = definitionList.item(temp);
-                if (dNode.getNodeType() == Node.ELEMENT_NODE) {
-                    Element dElement = (Element) dNode;
-                    String forNode = dElement.getElementsByTagName("FOR").item(0).getTextContent();
-                    bayesianNode node = findNodeByName(nodes, forNode);
-                    NodeList givenList = dElement.getElementsByTagName("GIVEN");
-                    for (int i = 0; i < givenList.getLength(); i++) {
-                        String givenNode = givenList.item(i).getTextContent();
-                        node.addParent(givenNode);
-                    }
+                Node var = variable.item(i);
+                if (var.getNodeType() == Node.ELEMENT_NODE) {
+                    Element outcome_var = (Element) var;
 
-                    NodeList tableList = dElement.getElementsByTagName("TABLE");
-                    for (int i = 0; i < tableList.getLength(); i++) {
-                        HashMap<String, String> row = new HashMap<>();
-                        String[] entries = tableList.item(i).getTextContent().split(" ");
-                        int index = 0;
-                        for (String parentName : node.getParents()) {
-                            row.put(parentName, entries[index++]);
-                        }
-                        row.put(node.getName(), entries[index++]);
-                        row.put("P", entries[index]);
-                        node.getCPT().add(row);
+                    String name = outcome_var.getElementsByTagName("NAME").item(0).getTextContent();
+                    variables.add(name);
+                    for (int j = 0; j < outcome_var.getElementsByTagName("OUTCOME").getLength(); j++) {
+                        outcomes.add(outcome_var.getElementsByTagName("OUTCOME").item(j).getTextContent());
                     }
                 }
-            }
 
-            network.fixNet();
-            return network;
-        } catch (Exception e) {
+                Node def = definition.item(i);
+                if (def.getNodeType() == Node.ELEMENT_NODE) {
+                    Element outcome_def = (Element) def;
+
+                    String for_def = outcome_def.getElementsByTagName("FOR").item(0).getTextContent();
+                    for (int j = 0; j < outcome_def.getElementsByTagName("GIVEN").getLength(); j++) {
+                        givens.add(outcome_def.getElementsByTagName("GIVEN").item(j).getTextContent());
+                    }
+                    for (int j = 0; j < outcome_def.getElementsByTagName("TABLE").getLength(); j++) {
+                        tables.add(outcome_def.getElementsByTagName("TABLE").item(j).getTextContent());
+                    }
+                }
+                String[] table = tables.get(0).split(" ");
+                bayesianNode bn = new bayesianNode(variables.get(0), givens, outcomes,BN);
+                cpts.put(bn.getName(),table);
+                BN.addNode(bn);
+            }
+        } catch (ParserConfigurationException | IOException | SAXException e) {
             e.printStackTrace();
         }
-        return null;
-    }
 
-    private static bayesianNode findNodeByName(List<bayesianNode> nodes, String name) {
-        for (bayesianNode node : nodes) {
-            if (node.getName().equals(name)) {
-                return node;
+        BN.fixNet();
+        List<String> keys = BN.getNodes().keySet().stream().toList();
+        for (int i=0;i<keys.size();i++) {
+            String nodeName = keys.get(i);
+            bayesianNode node = BN.getNode(nodeName);
+            if (node != null) {
+                node.build(cpts.get(nodeName));
+            } else {
+                System.out.println("Error: Node is null for name " + nodeName);
             }
         }
-        return null;
+        return BN;
     }
 }
-
-
-

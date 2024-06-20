@@ -6,10 +6,10 @@ public class TestRunner {
         String xmlFilePath = "alarm_net.xml";
         String textFilePath = "input.txt"; ;
 
-        bayesianNetwork network = xmlFile.readNetwork(xmlFilePath);
+        bayesianNetwork network = xmlFile.read_net(xmlFilePath);
         if (network != null) {
             System.out.println("Network successfully loaded.");
-            String result=readTextfile.readfile(textFilePath, network);
+            String result = readTextfile.readfile(textFilePath, network);
             System.out.println(result);
         } else {
             System.out.println("Failed to load the network.");

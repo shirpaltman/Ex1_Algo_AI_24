@@ -1,50 +1,48 @@
 import java.util.*;
 
-public class bayesianNetwork{
-    private Map<String,bayesianNode> nodes;
+public class bayesianNetwork {
+    private Map<String, bayesianNode> nodes;
+    List<bayesianNode> _bayesianNetwork;
 
     public bayesianNetwork() {
-        this.nodes = new HashMap<>();
+        nodes = new HashMap<>();
     }
 
     public void addNode(bayesianNode node) {
         nodes.put(node.getName(), node);
     }
 
-    public Map<String,bayesianNode> getNodes() {
-       return nodes;
-    }
 
     public bayesianNode getNode(String name) {
         return nodes.get(name);
     }
 
+    public Map<String, bayesianNode> getNodes() {
+        return nodes;
+    }
+
+    public bayesianNode returnByName(String name) {
+        return nodes.get(name);
+    }
 
 
     //Method to fix ant issues with the network structure
-    public void fixNet(){
+    public void fixNet() {
         // Ensure all parents have their children correctly set
         for (bayesianNode node : nodes.values()) {
             for (String parentName : node.getParents()) {
                 bayesianNode parent = getNode(parentName);
-                if(parent != null) {
+                if (parent != null) {
                     parent.addChild(node.getName());
                 }
             }
         }
     }
 
+
     @Override
-    public String toString(){
+    public String toString() {
         return "Network{nodes=" + nodes + "}";
     }
-
-//    public bayesianNode returnByName(String name) {
-//        for (bayesianNode node : nodes) {
-//            if (node.getName().equals(name)) {
-//                return node;
-//            }
-//        }
-//        return null;
-//    }
 }
+

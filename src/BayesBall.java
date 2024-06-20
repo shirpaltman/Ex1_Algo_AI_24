@@ -36,24 +36,28 @@ public class BayesBall {
         //Marking the current node as haveSeen
         haveSeen.add(source.getName());
 
-        //If the current node is in the evidence set
-        if(evidence.contains(source)){
 
+
+
+
+        //If the current node is in the evidence set
+        if(evidence.contains(source)) {
             //If after visiting a child,the ball is blocked
             if(lastSeen!=null && source.getChildren().contains(lastSeen.getName())){
                 return true;
                 // Its independent because the path is blocked
             }
-
-            for(String parentName :source.getParents()){
+            for (String parentName : source.getParents()) {
                 bayesianNode parent = BayesianNetwork.getNode(parentName);
-//                if (!haveSeen.contains(parent.getName())){
-                    if(!bayesBall(BayesianNetwork,parent,dest,evidence,source)){
+
+                    if (!bayesBall(BayesianNetwork, parent, dest, evidence, source)) {
                         return false;   // Going to be dependent if a path through a child isn't blocked
                     }
-//                }
+
+
             }
         }
+
         else{
             //if the current node  isn't in the evidence set
             //if were coming from a child or it is the starting node ,we'll have to check both parents

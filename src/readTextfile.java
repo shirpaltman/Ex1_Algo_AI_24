@@ -33,7 +33,7 @@ public class readTextfile {
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String line;
             line = br.readLine();
-            bayesianNetwork network = xmlFile.readNetwork(line);
+            bayesianNetwork network = xmlFile.read_net(line);
             while ((line = br.readLine()) != null) {
                 line = line.trim();
                 System.out.println("Processing line: " + line);
@@ -61,8 +61,8 @@ public class readTextfile {
                         evidence.put(parts[0], parts[1]);
                     }
 
-                    VariableElimination ve = new VariableElimination(query, hidden, evidence, network);
-                    ans = ans + ve.run() + "\n";
+                    VariableElimination ve = new VariableElimination(query, hidden, evi, network);
+                    ans = ans + ve.variableElimination() + "\n";
                 } else {
                     String[] given_split = line.split("\\|");
                     if (given_split.length < 1) {
