@@ -10,8 +10,11 @@ public class bayesianNode{
     private FactorComponent factor;
 
 
+    public void setNetwork(bayesianNetwork network) {
+        this.network = network;
+    }
 
-    public bayesianNode(String name, ArrayList<String> parents, ArrayList<String> outcomes,bayesianNetwork network) {
+    public bayesianNode(String name, ArrayList<String> parents, ArrayList<String> outcomes, bayesianNetwork network) {
         this.name = name;
         this.parents = new ArrayList<>(parents);
         this.children = new ArrayList<>();
@@ -147,6 +150,22 @@ public class bayesianNode{
         return cptTable;
     }
 
+    public void setParents(List<String> parents) {
+        this.parents = new ArrayList<>(parents);
+    }
+
+    public List<String> getVariables() {
+        List<String> variables = new ArrayList<>(parents);
+        variables.add(name);
+        return variables;
+    }
+
+
+    /**
+     * Creates the CPT table for the node using a list of possible outcome combinations and their corresponding probabilities.
+     * @param variables List of nodes representing variables involved in the CPT.
+     * @param probs List of probabilities corresponding to each combination of variable outcomes.
+     */
     public void createCptTable(List<bayesianNode> variables, List<Double> probs) {
         List<String> possibleOutcomes = new ArrayList<>();
         createCptTableHelper(variables, probs, possibleOutcomes, 0);
@@ -183,6 +202,12 @@ public class bayesianNode{
         }
     }
 
+
+    /**
+     * Sorts a set of CPT conditions by their string representations.
+     * @param keySet Set of CPT conditions to sort.
+     * @return Sorted list of CPT conditions.
+     */
 
     private List<Map<String, String>> sortedKeys(Set<Map<String, String>> keySet) {
         List<Map<String, String>> sortedList = new ArrayList<>(keySet);

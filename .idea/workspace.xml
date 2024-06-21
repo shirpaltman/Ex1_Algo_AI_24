@@ -9,6 +9,16 @@
       <change beforePath="$PROJECT_DIR$/src/FactorComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FactorComponent.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/VariableElimination.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/VariableElimination.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/bayesianNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bayesianNode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/readTextfile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/readTextfile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/xmlFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/xmlFile.java" afterDir="false" />
+    </list>
+    <list id="2c81bb38-ad70-454c-b2eb-2bba3a3ebeab" name="Changes by omero" comment="">
+      <change afterPath="$PROJECT_DIR$/src/EX1.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/FactorComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FactorComponent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TestRunner.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/VariableElimination.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/VariableElimination.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bayesianNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bayesianNode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/readTextfile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/readTextfile.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,6 +34,102 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="LineStatusTrackerManager">
+    <file path="$PROJECT_DIR$/src/VariableElimination.java">
+      <ranges>
+        <range start1="0" end1="0" start2="0" end2="2" changelist="2c81bb38-ad70-454c-b2eb-2bba3a3ebeab" />
+        <range start1="5" end1="6" start2="7" end2="9" changelist="cd70f8ee-46ca-4a05-90ad-636a01b4f179" />
+        <range start1="12" end1="13" start2="15" end2="16" changelist="2c81bb38-ad70-454c-b2eb-2bba3a3ebeab" />
+        <range start1="27" end1="28" start2="30" end2="30" changelist="2c81bb38-ad70-454c-b2eb-2bba3a3ebeab" />
+        <range start1="29" end1="29" start2="31" end2="32" changelist="2c81bb38-ad70-454c-b2eb-2bba3a3ebeab" />
+        <range start1="32" end1="32" start2="35" end2="37" changelist="2c81bb38-ad70-454c-b2eb-2bba3a3ebeab" />
+        <range start1="38" end1="39" start2="43" end2="47" changelist="cd70f8ee-46ca-4a05-90ad-636a01b4f179" />
+        <range start1="42" end1="43" start2="50" end2="51" changelist="cd70f8ee-46ca-4a05-90ad-636a01b4f179" />
+        <range start1="52" end1="53" start2="60" end2="61" changelist="cd70f8ee-46ca-4a05-90ad-636a01b4f179" />
+        <range start1="54" end1="55" start2="62" end2="62" changelist="2c81bb38-ad70-454c-b2eb-2bba3a3ebeab" />
+        <range start1="61" end1="62" start2="68" end2="73" changelist="cd70f8ee-46ca-4a05-90ad-636a01b4f179" />
+        <range start1="83" end1="84" start2="94" end2="101" changelist="cd70f8ee-46ca-4a05-90ad-636a01b4f179" />
+        <range start1="95" end1="96" start2="112" end2="117" changelist="cd70f8ee-46ca-4a05-90ad-636a01b4f179" />
+        <range start1="100" end1="101" start2="121" end2="126" changelist="cd70f8ee-46ca-4a05-90ad-636a01b4f179" />
+        <range start1="105" end1="106" start2="130" end2="136" changelist="cd70f8ee-46ca-4a05-90ad-636a01b4f179" />
+        <range start1="120" end1="121" start2="150" end2="157" changelist="cd70f8ee-46ca-4a05-90ad-636a01b4f179" />
+        <range start1="122" end1="123" start2="158" end2="159" changelist="cd70f8ee-46ca-4a05-90ad-636a01b4f179" />
+        <range start1="124" end1="127" start2="160" end2="163" changelist="cd70f8ee-46ca-4a05-90ad-636a01b4f179" />
+        <range start1="129" end1="140" start2="165" end2="178" changelist="cd70f8ee-46ca-4a05-90ad-636a01b4f179" />
+        <range start1="145" end1="166" start2="183" end2="197" changelist="cd70f8ee-46ca-4a05-90ad-636a01b4f179" />
+        <range start1="170" end1="171" start2="201" end2="209" changelist="cd70f8ee-46ca-4a05-90ad-636a01b4f179" />
+        <range start1="172" end1="174" start2="210" end2="233" changelist="2c81bb38-ad70-454c-b2eb-2bba3a3ebeab" />
+        <range start1="175" end1="175" start2="234" end2="242" changelist="2c81bb38-ad70-454c-b2eb-2bba3a3ebeab" />
+        <range start1="176" end1="177" start2="243" end2="249" changelist="cd70f8ee-46ca-4a05-90ad-636a01b4f179" />
+        <range start1="178" end1="180" start2="250" end2="262" changelist="2c81bb38-ad70-454c-b2eb-2bba3a3ebeab" />
+        <range start1="182" end1="183" start2="264" end2="269" changelist="cd70f8ee-46ca-4a05-90ad-636a01b4f179" />
+        <range start1="186" end1="187" start2="272" end2="273" changelist="cd70f8ee-46ca-4a05-90ad-636a01b4f179" />
+        <range start1="197" end1="198" start2="283" end2="284" changelist="cd70f8ee-46ca-4a05-90ad-636a01b4f179" />
+        <range start1="216" end1="218" start2="302" end2="304" changelist="2c81bb38-ad70-454c-b2eb-2bba3a3ebeab" />
+        <range start1="239" end1="240" start2="325" end2="326" changelist="2c81bb38-ad70-454c-b2eb-2bba3a3ebeab" />
+        <range start1="242" end1="243" start2="328" end2="329" changelist="cd70f8ee-46ca-4a05-90ad-636a01b4f179" />
+        <range start1="244" end1="245" start2="330" end2="331" changelist="2c81bb38-ad70-454c-b2eb-2bba3a3ebeab" />
+        <range start1="250" end1="252" start2="336" end2="339" changelist="2c81bb38-ad70-454c-b2eb-2bba3a3ebeab" />
+        <range start1="254" end1="257" start2="341" end2="341" changelist="cd70f8ee-46ca-4a05-90ad-636a01b4f179" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/src/FactorComponent.java">
+      <ranges>
+        <range start1="0" end1="0" start2="0" end2="5" changelist="cd70f8ee-46ca-4a05-90ad-636a01b4f179" />
+        <range start1="2" end1="5" start2="7" end2="14" changelist="cd70f8ee-46ca-4a05-90ad-636a01b4f179" />
+        <range start1="6" end1="8" start2="15" end2="29" changelist="cd70f8ee-46ca-4a05-90ad-636a01b4f179" />
+        <range start1="9" end1="14" start2="30" end2="34" changelist="cd70f8ee-46ca-4a05-90ad-636a01b4f179" />
+        <range start1="15" end1="20" start2="35" end2="59" changelist="cd70f8ee-46ca-4a05-90ad-636a01b4f179" />
+        <range start1="21" end1="25" start2="60" end2="86" changelist="cd70f8ee-46ca-4a05-90ad-636a01b4f179" />
+        <range start1="26" end1="31" start2="87" end2="106" changelist="cd70f8ee-46ca-4a05-90ad-636a01b4f179" />
+        <range start1="32" end1="50" start2="107" end2="107" changelist="cd70f8ee-46ca-4a05-90ad-636a01b4f179" />
+        <range start1="51" end1="51" start2="108" end2="109" changelist="2c81bb38-ad70-454c-b2eb-2bba3a3ebeab" />
+        <range start1="52" end1="65" start2="110" end2="138" changelist="cd70f8ee-46ca-4a05-90ad-636a01b4f179" />
+        <range start1="67" end1="69" start2="140" end2="140" changelist="cd70f8ee-46ca-4a05-90ad-636a01b4f179" />
+        <range start1="70" end1="87" start2="141" end2="175" changelist="cd70f8ee-46ca-4a05-90ad-636a01b4f179" />
+        <range start1="88" end1="98" start2="176" end2="192" changelist="cd70f8ee-46ca-4a05-90ad-636a01b4f179" />
+        <range start1="99" end1="100" start2="193" end2="194" changelist="cd70f8ee-46ca-4a05-90ad-636a01b4f179" />
+        <range start1="101" end1="109" start2="195" end2="211" changelist="cd70f8ee-46ca-4a05-90ad-636a01b4f179" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/src/readTextfile.java">
+      <ranges>
+        <range start1="10" end1="13" start2="10" end2="10" changelist="cd70f8ee-46ca-4a05-90ad-636a01b4f179" />
+        <range start1="18" end1="19" start2="15" end2="16" changelist="cd70f8ee-46ca-4a05-90ad-636a01b4f179" />
+        <range start1="30" end1="32" start2="27" end2="30" changelist="cd70f8ee-46ca-4a05-90ad-636a01b4f179" />
+        <range start1="35" end1="36" start2="33" end2="41" changelist="cd70f8ee-46ca-4a05-90ad-636a01b4f179" />
+        <range start1="40" end1="44" start2="45" end2="47" changelist="cd70f8ee-46ca-4a05-90ad-636a01b4f179" />
+        <range start1="46" end1="52" start2="49" end2="55" changelist="cd70f8ee-46ca-4a05-90ad-636a01b4f179" />
+        <range start1="55" end1="62" start2="58" end2="62" changelist="cd70f8ee-46ca-4a05-90ad-636a01b4f179" />
+        <range start1="63" end1="65" start2="63" end2="65" changelist="cd70f8ee-46ca-4a05-90ad-636a01b4f179" />
+        <range start1="66" end1="68" start2="66" end2="68" changelist="cd70f8ee-46ca-4a05-90ad-636a01b4f179" />
+        <range start1="70" end1="72" start2="70" end2="71" changelist="cd70f8ee-46ca-4a05-90ad-636a01b4f179" />
+        <range start1="75" end1="75" start2="74" end2="75" changelist="cd70f8ee-46ca-4a05-90ad-636a01b4f179" />
+        <range start1="76" end1="83" start2="76" end2="78" changelist="cd70f8ee-46ca-4a05-90ad-636a01b4f179" />
+        <range start1="85" end1="88" start2="80" end2="83" changelist="cd70f8ee-46ca-4a05-90ad-636a01b4f179" />
+        <range start1="94" end1="95" start2="89" end2="90" changelist="cd70f8ee-46ca-4a05-90ad-636a01b4f179" />
+        <range start1="97" end1="108" start2="92" end2="103" changelist="cd70f8ee-46ca-4a05-90ad-636a01b4f179" />
+        <range start1="109" end1="112" start2="104" end2="104" changelist="cd70f8ee-46ca-4a05-90ad-636a01b4f179" />
+        <range start1="116" end1="117" start2="108" end2="109" changelist="cd70f8ee-46ca-4a05-90ad-636a01b4f179" />
+        <range start1="126" end1="128" start2="118" end2="120" changelist="2c81bb38-ad70-454c-b2eb-2bba3a3ebeab" />
+        <range start1="129" end1="130" start2="121" end2="122" changelist="2c81bb38-ad70-454c-b2eb-2bba3a3ebeab" />
+        <range start1="135" end1="135" start2="127" end2="128" changelist="cd70f8ee-46ca-4a05-90ad-636a01b4f179" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/src/bayesianNode.java">
+      <ranges>
+        <range start1="12" end1="12" start2="12" end2="15" changelist="cd70f8ee-46ca-4a05-90ad-636a01b4f179" />
+        <range start1="13" end1="14" start2="16" end2="17" changelist="cd70f8ee-46ca-4a05-90ad-636a01b4f179" />
+        <range start1="49" end1="50" start2="52" end2="53" changelist="2c81bb38-ad70-454c-b2eb-2bba3a3ebeab" />
+        <range start1="51" end1="52" start2="54" end2="55" changelist="2c81bb38-ad70-454c-b2eb-2bba3a3ebeab" />
+        <range start1="63" end1="64" start2="66" end2="67" changelist="2c81bb38-ad70-454c-b2eb-2bba3a3ebeab" />
+        <range start1="74" end1="75" start2="77" end2="78" changelist="2c81bb38-ad70-454c-b2eb-2bba3a3ebeab" />
+        <range start1="80" end1="82" start2="83" end2="86" changelist="2c81bb38-ad70-454c-b2eb-2bba3a3ebeab" />
+        <range start1="149" end1="149" start2="153" end2="169" changelist="cd70f8ee-46ca-4a05-90ad-636a01b4f179" />
+        <range start1="186" end1="186" start2="206" end2="212" changelist="cd70f8ee-46ca-4a05-90ad-636a01b4f179" />
+      </ranges>
+    </file>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -61,8 +167,8 @@
   }
 }]]></component>
   <component name="RunManager">
-    <configuration name="TestRunner" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="TestRunner" />
+    <configuration name="Ex1" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Ex1" />
       <module name="Ex1_Algo_AI_24" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -70,7 +176,7 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.TestRunner" />
+        <item itemvalue="Application.Ex1" />
       </list>
     </recent_temporary>
   </component>
@@ -107,7 +213,8 @@
       <workItem from="1718861954216" duration="17414000" />
       <workItem from="1718899821923" duration="2435000" />
       <workItem from="1718902560361" duration="970000" />
-      <workItem from="1718903559285" duration="7912000" />
+      <workItem from="1718903559285" duration="32133000" />
+      <workItem from="1718967465248" duration="5698000" />
     </task>
     <task id="LOCAL-00001" summary="finished fixing reading the xml file and opening relevent classes.&#10;now starting to work on Bayesball">
       <option name="closed" value="true" />
@@ -197,7 +304,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718909958024</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="finished fixing reading the xml file and opening relevent classes.&#10;now starting to work on Bayesball">
+      <option name="closed" value="true" />
+      <created>1718912614997</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1718912614997</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -221,15 +336,6 @@
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/FactorComponent.java</url>
-          <line>27</line>
-          <properties class="FactorComponent" method="removeIrrelevantRows">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="25" />
-        </line-breakpoint>
         <breakpoint enabled="true" type="java-exception">
           <properties class="java.lang.NullPointerException" package="java.lang" />
           <option name="timeStamp" value="31" />
@@ -238,30 +344,18 @@
           <properties class="java.lang.IndexOutOfBoundsException" package="java.lang" />
           <option name="timeStamp" value="33" />
         </breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/VariableElimination.java</url>
-          <line>35</line>
-          <option name="timeStamp" value="34" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/VariableElimination.java</url>
-          <line>33</line>
-          <option name="timeStamp" value="35" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/bayesianNode.java</url>
-          <line>79</line>
-          <option name="timeStamp" value="42" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/bayesianNode.java</url>
-          <line>48</line>
-          <option name="timeStamp" value="43" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/VariableElimination.java</url>
-          <line>122</line>
-          <option name="timeStamp" value="47" />
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.UnsupportedOperationException" package="java.lang" />
+          <option name="timeStamp" value="78" />
+        </breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/FactorComponent.java</url>
+          <line>89</line>
+          <properties class="FactorComponent" method="needToRemoveOne">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="77" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
