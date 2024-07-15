@@ -4,18 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cd70f8ee-46ca-4a05-90ad-636a01b4f179" name="Changes" comment="finished hurray!!!!">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/input.txt" beforeDir="false" afterPath="$PROJECT_DIR$/input.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/output.txt" beforeDir="false" afterPath="$PROJECT_DIR$/output.txt" afterDir="false" />
-    </list>
-    <list id="2c81bb38-ad70-454c-b2eb-2bba3a3ebeab" name="Changes by omero" comment="">
-      <change beforePath="$PROJECT_DIR$/src/FactorComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FactorComponent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TestRunner.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/VariableElimination.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/VariableElimination.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/bayesianNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bayesianNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/readTextfile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/readTextfile.java" afterDir="false" />
-    </list>
+    <list default="true" id="cd70f8ee-46ca-4a05-90ad-636a01b4f179" name="Changes" comment="Changes by omero" />
+    <list id="2c81bb38-ad70-454c-b2eb-2bba3a3ebeab" name="Changes by omero" comment="Changes by omero" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -120,7 +110,7 @@
       <workItem from="1721053621933" duration="325000" />
       <workItem from="1721053968266" duration="136000" />
       <workItem from="1721054245147" duration="55000" />
-      <workItem from="1721054688840" duration="1568000" />
+      <workItem from="1721054688840" duration="2248000" />
     </task>
     <task id="LOCAL-00001" summary="finished fixing reading the xml file and opening relevent classes.&#10;now starting to work on Bayesball">
       <option name="closed" value="true" />
@@ -226,7 +216,31 @@
       <option name="project" value="LOCAL" />
       <updated>1718974188263</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="finished hurray!!!!">
+      <option name="closed" value="true" />
+      <created>1721056276958</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1721056276958</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Changes by omero">
+      <option name="closed" value="true" />
+      <created>1721057052731</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1721057052731</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Changes by omero">
+      <option name="closed" value="true" />
+      <created>1721057067344</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1721057067344</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -246,7 +260,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="finished fixing reading the xml file and opening relevent classes.&#10;now starting to work on Bayesball" />
     <MESSAGE value="finished hurray!!!!" />
-    <option name="LAST_COMMIT_MESSAGE" value="finished hurray!!!!" />
+    <MESSAGE value="Changes by omero" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changes by omero" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
