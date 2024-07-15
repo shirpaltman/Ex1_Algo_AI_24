@@ -50,9 +50,9 @@ public class bayesianNode{
 //            cpt.add(cptRow);
 //        }
         int section = table.length;
-        ArrayList<HashSet<String>> variables = new ArrayList<>();
+        ArrayList<HashMap<String,String>> variables = new ArrayList<>();
         for (int i = 0; i < section; i++) {
-            variables.add(new HashSet<>());
+            variables.add(new HashMap<>());
         }
         for (String given : this.parents) {
             bayesianNode parentN = network.getNode(given);
@@ -64,7 +64,7 @@ public class bayesianNode{
                 int outcome_index = indexer;
                 for (int j = outcome_index * section; j < table.length; j += num_of_outcomes * section) {
                     for (int k = 0; k < section; k++) {
-                        variables.get(k + j).add(key);
+                        variables.get(k + j).put(parentN.getName(), key);
                     }
                 }
             }
@@ -75,14 +75,15 @@ public class bayesianNode{
             int num_of_outcomes = this.outcomes.size();
             for (int j = index * section; j < table.length; j += num_of_outcomes * section) {
                 for (int k = 0; k < section; k++) {
-                    variables.get(k + j).add(key);
+                    variables.get(k + j).put(this.getName(),key);
                 }
             }
             index++;
         }
         for (int i = 0; i < variables.size(); i++) {
-            HashSet<String> variable = variables.get(i);
-            String val = table[i];
+            HashMap<String,String> variable = variables.get(i);
+            Double val = Double.parseDouble(table[i]);
+            this.cptTable.put(variable,val);
         }
 
     }

@@ -1,3 +1,5 @@
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.*;
@@ -11,7 +13,7 @@ public class VariableElimination {
     String str_query;
     ArrayList<bayesianNode> hidden = new ArrayList<>();
     ArrayList<bayesianNode> evidence = new ArrayList<>();
-    ArrayList<String> evi = new ArrayList<>();
+    HashMap<String, String> evi = new HashMap<>();
     bayesianNetwork BN;
     ArrayList<FactorComponent> factors = new ArrayList<>();
     int multiply = 0;
@@ -26,11 +28,13 @@ public class VariableElimination {
             this.hidden.add(BN.returnByName(_hidden));
         }
         for (String evi : evidence) {
-            this.evi.add(evi);
             String[] parts = evi.split("=");
+            this.evi.put(parts[0], parts[1]);
             this.evidence.add(BN.returnByName(parts[0]));
         }
         this.BN = BN;
+        this.add =0;
+        this.multiply =0;
         // Initialize factors
         generateFactors();
         removeOneSize(this.factors);
@@ -56,7 +60,6 @@ public class VariableElimination {
             if (!irrelevant.contains(node)) {
                 FactorComponent f = new FactorComponent(node.getCptTable(), evi);
                 f.filterRowByEvidence();
-                f.removeEvidence();
                 node.setFactor(f);
                 this.factors.add(f);
             }
@@ -205,8 +208,37 @@ public class VariableElimination {
      */
 
     public FactorComponent eliminate(FactorComponent a, bayesianNode hidden) {
-        a.marginalizeVariable(hidden.getName());
-        return a;
+        FactorComponent result = new FactorComponent();
+        result.evidenceList.putAll(a.evidenceList);
+
+        HashSet<Map<String, String>> aggregatedValues = new HashSet<>();
+        for (Map<String, String> row : a.probabilityTable.keySet()) {
+            Map<String, String> cpy_row = new HashMap<>(row);
+            cpy_row.remove(hidden.getName());
+            aggregatedValues.add(cpy_row);
+
+        }
+        for(Map<String, String> cpy_row:aggregatedValues){
+            List<Map<String,String>> toAddRows = a.probabilityTable.keySet().stream().filter(k->containsAllKeys(k,cpy_row)).toList();
+            double total = 0;
+            for(Map<String,String> rowAdd : toAddRows){
+                double value = a.probabilityTable.get(rowAdd);
+                total+=value;
+            }
+            result.probabilityTable.put(cpy_row,total);
+            this.add++;
+        }
+
+        return result;
+        
+    }
+    private boolean containsAllKeys(Map<String,String> k1, Map<String,String> k2){
+        List<String> keys = k1.keySet().stream().filter(k2::containsKey).toList();
+        for (String k : keys){
+            if(!Objects.equals(k1.get(k), k2.get(k)))
+                return false;
+        }
+        return true;
     }
 
     /**
@@ -216,8 +248,18 @@ public class VariableElimination {
      * @return The normalized factor.
      */
     public FactorComponent normalize(FactorComponent a) {
-        a.normalizeFactor();
-        return a;
+        double total = 0.0;
+        FactorComponent f = new FactorComponent();
+        for (Map<String, String> row : a.probabilityTable.keySet()) {
+            total += a.probabilityTable.get(row);
+            this.add++;
+        }
+        this.add--;
+        for (Map<String, String> row : a.probabilityTable.keySet()) {
+            double normalizedValue = a.getProbabilityTable().get(row) / total;
+            f.probabilityTable.put(row,normalizedValue);
+        }
+        return f;
     }
 
     /**
@@ -258,8 +300,8 @@ public class VariableElimination {
                     sort(hidFactors);
                 }
                 if (!hidFactors.isEmpty()) {
-                    FactorComponent elim = eliminate(hidFactors.get(0), h);
-                    this.factors.remove(hidFactors.get(0));
+                    FactorComponent elim = eliminate(hidFactors.getFirst(), h);
+                    this.factors.remove(hidFactors.getFirst());
                     hidFactors.remove(0);
                     this.factors.add(elim);
                     hidFactors.add(elim);
@@ -281,18 +323,19 @@ public class VariableElimination {
             removeOneSize(this.factors);
             sort(this.factors);
         }
-        String answer = "";
+        double answer = 0;
         try {
             res = normalize(this.factors.get(0));
             for (Map<String, String> row : res.getProbabilityTable().keySet()) {
                 if (row.get(this.query.getName()).equals(q[1])) {
-                    answer = row.get("P");
+                    answer = res.probabilityTable.get(row);
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        answer += "," + this.add + "," + this.multiply;
-        return answer;
+        String str_answer = new BigDecimal(answer).setScale(5, RoundingMode.HALF_EVEN).toString();
+        str_answer += "," + this.add + "," + this.multiply;
+        return str_answer;
     }
 }

@@ -116,10 +116,10 @@ public class readTextfile {
 
     private static List<String> parseHiddenVariables(String line) {
         List<String> hiddenVariables = new ArrayList<>();
-        if (line.contains(" ")) {
-            String[] parts = line.split(" ");
+        if (line.contains("-")) {
+            String[] parts = line.split("-");
             if (parts.length > 1) {
-                hiddenVariables = Arrays.asList(parts[1].split("-"));
+                hiddenVariables = Arrays.asList(parts);
             }
         }
         return hiddenVariables;

@@ -106,6 +106,7 @@ import java.util.*;
                 if(this.probabilityTable.keySet().stream().anyMatch(k-> k.containsKey(eviKey)))
                     return true;
             }
+            return false;
         }
         private boolean needToRemoveRow(Map<String,String> key){
             for(String eviKey:this.evidenceList.keySet())
